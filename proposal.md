@@ -9,6 +9,8 @@ In real life, though, light does not only interact with surfaces of objects, but
 
 Appleseed is a performant physically-based rendering engine. It has already gained the level of maturity when volume rendering becomes an essential milestone, which opens the door to competition with the most powerful and respected production engines in the whole industry of computer graphics and animation. My goal is to make the first step on the way of achieving this milestone by integrating the feature of rendering _homogeneous_ volumes to appleseed engine, and thus making it capable to handle simple volumetric effects, such as light shafts in a foggy environment. During my work I will investigate different approaches of visualizing volumes, select the techniques that are modern, efficient, and fit the best to the existing path tracing code of appleseed, and then implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the user interface of appleseed.studio.
 
+Finally, appleseed will be able to render the scenes like this one: 
+
 <p><img height="385" width="578" src="http://lucas-zimmermann.com/images/_o6a52952.jpg" alt="Photograph by Lucas Zimmermann" data-canonical-src="http://lucas-zimmermann.com/images/_o6a52952.jpg">
 <br>(Photograph by Lucas Zimmermann, <br>from the "Traffic Light 2.0" series — <a href="http://lucas-zimmermann.com/traffic-lights-2.0.html">Source</a>)</p>
 
@@ -33,3 +35,35 @@ The following features must be delivered at the end of the summer project:
 Raymarching engine must be fully integrated with appleseed, i.e.:
 -   Python bindings for all aforementioned functions and related entities must be provided
 -   Volume rendering must work with all three currently supported rendering modes
+
+Optional deliverables:
+-   TODO
+
+## Project plan
+### Now - 29 May (Community bonding period)
+-   Deeply review the path tracing code of appleseed by actively contributing to it: add new features and fix bugs
+-   Investigate scientific literature about volume rendering, select modern and efficient methods suitable for my task and discuss these methods with my mentors
+-   Find out more about phase functions that are used in production rendering
+-   Get closer to Qt and investigate how the interface for volume rendering should look like discussing this topic with appleseed community
+### 30 May - 2 June
+-   Implement and test absorbtion and scattering formulas
+-   Start implementing basic entities necessary for volume rendering, such as Phase Function, Volumetric Material
+### 5 June - 9 June
+-   Implement all basic classes necessary for volume rendering
+-   Expose some of these entities to users, providing UI for appleseed.studio
+-   Implement formulas for some commonly used phase functions
+### 12 June - 16 June
+-   Develop simple ray marcher with constant steps that can compute attenuation
+-   Add single scattering to the ray marcher
+### 19 June - 23 June
+-   Add support for adaptive steps to the ray marcher
+-   Prepare a reference database with images of existing scenes, real or rendered with existing volume rendering engines
+-   Compare results of our raymarcher with this reference, thoroughly test functionality, fix bugs
+### 26 June - 30 June (Phase 1 evaluation)
+-   Update build files
+-   Make the application to build and run on all platforms
+By the end of phase 2 there must be:
+-   The basic volume rendering available for all the rendering modes, except photon mapping.
+-   Support for both adaptive and constant stepping
+-   Support for single scattering
+### 
