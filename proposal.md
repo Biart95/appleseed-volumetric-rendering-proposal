@@ -19,3 +19,10 @@ effects, such as light shafts in a foggy environment. During my work I will inve
 select the techniques that are modern, efficient, and fit the best to the existing path tracing code of appleseed, and then 
 implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the 
 user interface of appleseed.studio.
+
+## About me
+I am Artem Bishev, MSc student of Technical University of Munich, Germany. My current program is called "Informatics: Games Engineering". Previously I attained a BSc degree in Mathematics and Computer Science in Lomonosov Moscow State University. Since school I was interested in computer graphics, both real-time and photorealistic, and have experience in the field, working for EligoVision company in Russia. I have a professional knowledge of modern C++, and I am closely familiar with Python.
+My contacts:
+* email: biart95@gmail.com
+* phone: +49 176 268 90 351
+* github: https://github.com/Biart95/
