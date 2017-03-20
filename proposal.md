@@ -21,7 +21,8 @@ implement the chosen methods. Additionally, I will introduce how users will inte
 user interface of appleseed.studio.
 
 ## About me
-I am Artem Bishev, MSc student of Technical University of Munich, Germany. My current program is called "Informatics: Games Engineering". Previously I attained a BSc degree in Mathematics and Computer Science in Lomonosov Moscow State University. Since school I was interested in computer graphics, both real-time and photorealistic, and have experience in the field, working for EligoVision company in Russia. I have a professional knowledge of modern C++, and I am closely familiar with Python.
+I am Artem Bishev, MSc student of Technical University of Munich, Germany. My current program is called "Informatics: Games Engineering". Previously I attained a BSc degree in Mathematics and Computer Science in Lomonosov Moscow State University.
+Since school I was interested in computer graphics, both real-time and photorealistic, and have experience in the field, working for EligoVision company in Russia. I have a professional knowledge of modern C++, and I am closely familiar with Python.
 My contacts:
 * email: biart95@gmail.com
 * phone: +49 176 268 90 351
