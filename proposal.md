@@ -14,7 +14,7 @@ linear path.
 Appleseed is a performant physically-based rendering engine. It already gained the level of maturity when volume rendering becomes 
 an essential milestone, which opens the door to competition with the most powerful and respected production engines in the whole 
 industry of computer graphics and animation. My goal is to make the first step on the way of achieving this milestone by 
-integrating the feature of rendering homogenous volumes to appleseed engine, and thus making it capable to handle simple volumetric 
+integrating the feature of rendering _homogenous_ volumes to appleseed engine, and thus making it capable to handle simple volumetric 
 effects, such as light shafts in a foggy environment. During my work I will investigate different approaches of visualizing volumes, 
 select the techniques that are modern, efficient, and fit the best to the existing path tracing code of appleseed, and then 
 implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the 
