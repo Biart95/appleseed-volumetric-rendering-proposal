@@ -26,9 +26,8 @@ My contacts:
 
 ## Goals
 The following features must be delivered at the end of the summer project:
--   _Raymarching engine_ that extends appleseed path tracer and is capable of rendering homogeneous volumes
+-   Raymarching engine that extends appleseed path tracer and is capable of rendering homogeneous volumes
 -   Support for adaptive steps during raymarching
--   Support for _multiple importance sampling_ for volume rendering
 -   Database consisting of reference images that are used to compare and test rendering results
 -   Simple and convenient UI for volume rendering in appleseed.studio
 
@@ -37,7 +36,7 @@ Raymarching engine must be fully integrated with appleseed, i.e.:
 -   Volume rendering must work with all three currently supported rendering modes
 
 Optional deliverables:
--   TODO
+-   Support for multiple importance sampling for volume rendering
 
 ## Project plan
 ### Community bonding period
@@ -79,12 +78,13 @@ Optional deliverables:
 -   Support for both adaptive and constant stepping, for single and mutiple scattering
 ### Phase 3
 #### 31 July - 4 August
--   Implement multiple importance sampling for volume rendering
-#### 7 August - 11 August
 -   Write python bindings for volume rendering functions and entities
-#### 14 August - 18 August
+#### 7 August - 11 August
+-   Implement multiple importance sampling for volume rendering (OPTIONAL)
 -   Thoroughly test all implemented elements. Ensure that they do not break old functionality and are well integrated with appleseed infrastructure, such as appleseed.python
+#### 14 August - 18 August
 -   Write documentation
+-   Continue testing
 #### 21 August - 25 August
 -   Final product evaluation
 #### By the end of phase 3 all goals must be reached
