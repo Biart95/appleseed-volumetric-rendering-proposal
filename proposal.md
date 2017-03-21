@@ -20,9 +20,9 @@ I am Artem Bishev, M.Sc. student of Technical University of Munich, Germany. My 
 Since school I was interested in computer graphics, both real-time and photorealistic, and have experience in the field, working for EligoVision company in Russia. I have a professional knowledge of modern C++, and I am closely familiar with Python.
 
 My contacts:
-*   email: biart95@gmail.com
-*   phone: +49 176 268 90 351
-*   github: https://github.com/Biart95/
+*   E-mail: biart95@gmail.com
+*   Phone: +49 176 268 90 351
+*   GitHub: https://github.com/Biart95/
 
 ## Goals
 The following features must be delivered at the end of the summer project:
@@ -75,7 +75,7 @@ Optional deliverables:
 -   Add photon maps support to volume rendering
 -   Integrate the raymarcher with the "Stochastic Progressive Photon Mapping" rendering mode
 #### By the end of phase 2 there must be:
--   Volume rendering, available for all existing rendering modes except photon mapping
+-   Volume rendering, available for all existing rendering modes
 -   Support for both adaptive and constant stepping, for single and mutiple scattering
 ### Phase 3
 #### 31 July - 4 August
@@ -87,3 +87,4 @@ Optional deliverables:
 -   Write documentation
 #### 21 August - 25 August
 -   Final product evaluation
+#### By the end of phase 3 all goals must be reached
