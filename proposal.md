@@ -55,14 +55,13 @@ Optional deliverables:
 -   Implement formulas for some commonly used phase functions
 #### 12 June -- 16 June
 -   Develop simple ray marcher with constant steps that can compute attenuation
--   Add single scattering to this ray marcher
 #### 19 June -- 23 June
+-   Add single scattering to this ray marcher
 -   Add support for adaptive steps
+#### 26 June -- 30 June
 -   Prepare a reference database with images of existing scenes, real or rendered with existing volume rendering engines
 -   Compare results of our raymarcher with this reference, thoroughly test functionality, fix bugs
-#### 26 June -- 30 June
--   Update build files
--   Make the application build and run on all platforms
+-   Prepare the project for Phase 1 submition, finalize the changes
 #### By the end of phase 1 there must be:
 -   The basic volume rendering, available for all existing rendering modes except photon mapping
 -   Support for both adaptive and constant stepping
@@ -73,12 +72,14 @@ Optional deliverables:
 #### 17 July -- 21 July, 24 July -- 28 July
 -   Add photon maps support to volume rendering
 -   Integrate the raymarcher with the "Stochastic Progressive Photon Mapping" rendering mode
+-   Prepare the project for Phase 2 submition
 #### By the end of phase 2 there must be:
 -   Volume rendering, available for all existing rendering modes
 -   Support for both adaptive and constant stepping, for single and mutiple scattering
 ### Phase 3
 #### 31 July - 4 August
 -   Write python bindings for volume rendering functions and entities
+-   Include support for OSL volume shaders
 #### 7 August - 11 August
 -   Profile volume rendering solution, make optimizations that increase performance
 -   Derive formulas for multiple importance sampling (OPTIONAL)
@@ -93,5 +94,4 @@ Optional deliverables:
 These goals are beyond the scope of GSoC'17, and can be implemented afterwards:
 -   Volume rendering for non-homogeneous volumes: Voxel-based, Particle-based, Analytical
 -   Procedural generation of non-homogeneous volumes
--   Support for OSL volume shaders
 -   Support for internal formats, such as OpenVDB
