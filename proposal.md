@@ -28,6 +28,7 @@ My contacts:
 The following features must be delivered at the end of the summer project:
 -   Raymarching engine that extends appleseed path tracer and is capable of rendering homogeneous volumes
 -   Support for adaptive steps during raymarching
+-   Support for OSL volume shaders
 -   Database consisting of reference images that are used to compare and test rendering results
 -   Simple and convenient UI for volume rendering in appleseed.studio
 
