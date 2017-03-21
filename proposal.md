@@ -88,3 +88,12 @@ Optional deliverables:
 #### 21 August - 25 August
 -   Final product evaluation
 #### By the end of phase 3 all goals must be reached
+## Further development
+These goals are beyond the scope of GSoC'17, and can be implemented afterwards:
+-   Volume rendering for non-homogeneous volumes:
+-      Voxel-based
+-      Particle-based
+-      Analytical
+-   Procedural generation of volumes
+-   Support for OSL volume shaders
+-   Support for internal formats, such as OpenVDB
