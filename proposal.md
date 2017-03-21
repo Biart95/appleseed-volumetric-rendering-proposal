@@ -7,7 +7,7 @@ eventually reach the camera and produce the image that people can see.
 
 In real life, though, light does not only interact with surfaces of objects, but also can be scattered or absorbed while traversing the space between these objects. The broad branch of techniques that take these effects into consideration is generally called _Volume Rendering_ or _Volumetric Rendering_. Volume rendering implies to extend the classical path tracing by allowing light rays to interact with so-called participating media, be it fog, dust, milk or any other substance that can scatter the light out of its linear path.
 
-Appleseed is a performant physically-based rendering engine. It has already gained the level of maturity when volume rendering becomes an essential milestone, which opens the door to competition with the most powerful and respected production engines. My goal is to make the first step on the way of reaching this milestone by integrating the feature of rendering _homogeneous_ volumes to appleseed engine, and thus making it capable to handle simple volumetric effects, such as light shafts in a foggy environment. During my work I will investigate different approaches of visualizing volumes, select the techniques that are modern, efficient, and fit the best to the existing path tracing code of appleseed, and then implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the user interface of appleseed.studio.
+Appleseed is a performant physically-based rendering engine. It has already gained the level of maturity when volume rendering becomes an essential milestone, which opens the door to competition with the most powerful and respected production engines. My goal is to make the first step on the way of reaching this milestone by integrating the feature of rendering _homogeneous_ volumes to appleseed engine, and thus making it capable to handle simple volumetric effects, such as light shafts in a foggy environment. During my work I will investigate different approaches of visualizing volumes, select the techniques that are modern, efficient and fit the best to the existing path tracing code of appleseed, and then implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the user interface of appleseed.studio.
 
 Finally, appleseed will be able to render the scenes like this one: 
 
@@ -80,11 +80,12 @@ Optional deliverables:
 #### 31 July - 4 August
 -   Write python bindings for volume rendering functions and entities
 #### 7 August - 11 August
--   Implement multiple importance sampling for volume rendering (OPTIONAL)
--   Thoroughly test all implemented elements. Ensure that they do not break old functionality and are well integrated with appleseed infrastructure, such as appleseed.python
+-   Profile volume rendering solution, make optimizations that increase performance
+-   Derive formulas for multiple importance sampling (OPTIONAL)
+-   Implement and test multiple importance sampling for volume rendering (OPTIONAL)
 #### 14 August - 18 August
+-   Thoroughly test all implemented elements. Ensure that they do not break old functionality and are well integrated with appleseed infrastructure, such as appleseed.python
 -   Write documentation
--   Continue testing
 #### 21 August - 25 August
 -   Final product evaluation
 #### By the end of phase 3 all goals must be reached
