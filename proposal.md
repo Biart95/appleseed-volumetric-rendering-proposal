@@ -47,6 +47,7 @@ Optional deliverables:
 -   Review scientific literature about volume rendering, select modern and efficient methods suitable for my task and discuss these methods with my mentors
 -   Find out more about phase functions that are used in production rendering
 -   Get closer to Qt and investigate how the interface for volume rendering should look like, discuss this topic with appleseed community
+-   Develop a clear understanding what new entities will be added to appleseed and which old entities will be touched by the changes, define relations between those entities
 ### Phase 1
 #### 30 May -- 2 June
 -   Implement and test absorbtion and scattering formulas
