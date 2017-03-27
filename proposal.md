@@ -51,12 +51,11 @@ Optional deliverables:
 #### 30 May -- 2 June
 -   Implement and test absorbtion and scattering formulas
 -   Implement abstract Phase Function class (analogical to BRDF) and classes related to it. Implement formulas of some specific phase functions.
--   Implement other basic entities necessary for volume rendering, such as Volumetric Material
--   Expose some of these entities to users, providing UI for appleseed.studio
 #### 5 June -- 9 June, 12 June -- 16 June
+-   Implement some basic entities necessary for volume rendering, such as Volumetric Material
+-   Expose some of these entities to users, providing UI for appleseed.studio
 -   Develop simple ray marching engine with constant steps that can compute attenuation
--   Incorporate this ray marcher to the existing path tracing engine
--   Include some settings of new ray marching engine to the UI of appleseed.studio
+-   Incorporate this ray marcher to the existing path tracing engine and include the settings of new ray marching engine to the UI
 #### 19 June -- 23 June, 26 June -- 30 June
 -   Add single scattering to the ray marcher
 -   Add support for adaptive steps
@@ -73,6 +72,7 @@ Optional deliverables:
 #### 17 July -- 21 July, 24 July -- 28 July
 -   Add photon maps support to volume rendering
 -   Integrate the raymarcher with the "Stochastic Progressive Photon Mapping" rendering mode
+-   Profile volume rendering solution, make optimizations that increase performance
 -   Prepare the project for Phase 2 submition
 #### By the end of phase 2 there must be:
 -   Volume rendering, available for all existing rendering modes
@@ -81,7 +81,6 @@ Optional deliverables:
 #### 31 July - 4 August, 7 August - 11 August
 -   Include support for OSL volume shaders
 -   Write python bindings for volume rendering functions and entities
--   Profile volume rendering solution, make optimizations that increase performance
 -   Derive formulas for multiple importance sampling (OPTIONAL)
 -   Implement and test multiple importance sampling for volume rendering (OPTIONAL)
 #### 14 August - 18 August, 21 August - 25 August
@@ -94,3 +93,4 @@ These goals are beyond the scope of GSoC'17, and can be implemented afterwards:
 -   Volume rendering for non-homogeneous volumes (such as clouds): Voxel-based, Particle-based, Analytical
 -   Procedural generation of non-homogeneous volumes
 -   Support for internal formats, such as OpenVDB
+-   Emissive volumetric materials
