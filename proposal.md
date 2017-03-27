@@ -5,11 +5,11 @@ Classical method of path tracing looks at physical media as a set of 3D surfaces
 reflecting it, or transmitting it inwards. This interaction makes light rays to repeatedly bounce off objects, until they 
 eventually reach the camera and produce the image that people can see.
 
-In real life, though, light does not only interact with surfaces of objects, but also can be scattered or absorbed while traversing the space between these objects. The broad branch of techniques that take these effects into consideration is generally called _Volume Rendering_ or _Volumetric Rendering_. Volume rendering implies to extend the classical path tracing by allowing light rays to interact with so-called participating media, be it fog, dust, milk or any other substance that can scatter the light out of its linear path.
+In real life, though, light does not only interact with surfaces of objects, but also can be scattered or absorbed while traversing the space between these surfaces. The broad branch of techniques that take these effects into account is generally called _Volume Rendering_ or _Volumetric Rendering_. This term implies the classical path tracing to be extended by allowing light rays to interact with so-called participating media, be it fog, dust, milk or any other substance that can scatter the light out of its linear path.
 
-Appleseed is a performant physically-based rendering engine. It has already gained the level of maturity when volume rendering becomes an essential milestone, which opens the door to competition with the most powerful and respected production engines. My goal is to make the first step on the way of reaching this milestone by integrating the feature of rendering _homogeneous_ volumes to appleseed engine, and thus making it capable to handle simple volumetric effects, such as light shafts in a foggy environment. During my work I will investigate different approaches of visualizing volumes, select the techniques that are modern, efficient and fit the best to the existing path tracing code of appleseed, and then implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the user interface of appleseed.studio.
+Appleseed is a performant physically-based rendering engine. It has already gained the level of maturity when volume rendering becomes an essential milestone, which opens up the competition with the most powerful and respected production engines. My goal is to make the first step on the way of reaching this milestone by integrating the feature of rendering _homogeneous_ volumes to appleseed engine, and thus making it capable to handle simple volumetric effects, such as light shafts in a foggy environment. During my work I will investigate different approaches of visualizing volumes, select the techniques that are modern, efficient and fit the best to the existing path tracing code of appleseed, and then implement the chosen methods. Additionally, I will introduce how users will interact with the newly added features by extending the user interface of appleseed.studio.
 
-Finally, appleseed will be able to render the scenes like this one: 
+After my modification, appleseed will be able to render the scenes like this one: 
 
 <p><img height="385" width="578" src="http://lucas-zimmermann.com/images/_o6a52952.jpg" alt="Photograph by Lucas Zimmermann" data-canonical-src="http://lucas-zimmermann.com/images/_o6a52952.jpg">
 <br>(Photograph by Lucas Zimmermann, <br>from the "Traffic Light 2.0" series — <a href="http://lucas-zimmermann.com/traffic-lights-2.0.html">Source</a>)</p>
@@ -27,13 +27,14 @@ My contacts:
 ## Goals
 The following features must be delivered at the end of the summer project:
 -   Raymarching engine that extends appleseed path tracer and is capable of rendering homogeneous volumes
+-   Support for both single and multiple scattering
 -   Support for adaptive steps during raymarching
--   Support for OSL volume shaders
+-   Full support for OSL volume shaders
 -   Database consisting of reference images that are used to compare and test rendering results
--   Simple and convenient UI for volume rendering in appleseed.studio
 
 Raymarching engine must be fully integrated with appleseed, i.e.:
 -   Python bindings for all aforementioned functions and related entities must be provided
+-   Simple and convenient UI extention for volume rendering must be provided for appleseed.studio
 -   Volume rendering must work with all three currently supported rendering modes
 
 Optional deliverables:
@@ -49,15 +50,15 @@ Optional deliverables:
 ### Phase 1
 #### 30 May -- 2 June
 -   Implement and test absorbtion and scattering formulas
--   Start implementing basic entities necessary for volume rendering, such as Phase Function, Volumetric Material
-#### 5 June -- 9 June
--   Implement all basic classes necessary for volume rendering
+-   Implement abstract Phase Function class (analogical to BRDF) and classes related to it. Implement formulas of some specific phase functions.
+-   Implement other basic entities necessary for volume rendering, such as Volumetric Material
 -   Expose some of these entities to users, providing UI for appleseed.studio
--   Implement formulas for some commonly used phase functions
-#### 12 June -- 16 June
--   Develop simple ray marcher with constant steps that can compute attenuation
+#### 5 June -- 9 June, 12 June -- 16 June
+-   Develop simple ray marching engine with constant steps that can compute attenuation
+-   Incorporate this ray marcher to the existing path tracing engine
+-   Include some settings of ray marching engine in the UI of appleseed.studio
 #### 19 June -- 23 June
--   Add single scattering to this ray marcher
+-   Add single scattering to the ray marcher
 -   Add support for adaptive steps
 #### 26 June -- 30 June
 -   Prepare a reference database with images of existing scenes, real or rendered with existing volume rendering engines
@@ -79,8 +80,8 @@ Optional deliverables:
 -   Support for both adaptive and constant stepping, for single and mutiple scattering
 ### Phase 3
 #### 31 July - 4 August
--   Write python bindings for volume rendering functions and entities
 -   Include support for OSL volume shaders
+-   Write python bindings for volume rendering functions and entities
 #### 7 August - 11 August
 -   Profile volume rendering solution, make optimizations that increase performance
 -   Derive formulas for multiple importance sampling (OPTIONAL)
