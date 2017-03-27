@@ -29,7 +29,7 @@ The following features must be delivered at the end of the summer project:
 -   **Raymarching engine** that extends appleseed path tracer and is capable of rendering homogeneous participating media inside closed surfaces
 -   Support for both single and multiple scattering
 -   Support for adaptive steps during raymarching
--   Full support for OSL volume shaders
+-   Support for OSL volume shaders
 -   Database consisting of reference images that are used to compare and test rendering results
 
 Raymarching engine must be fully integrated with appleseed, i.e.:
@@ -56,7 +56,7 @@ Optional deliverables:
 #### 5 June -- 9 June, 12 June -- 16 June
 -   Develop simple ray marching engine with constant steps that can compute attenuation
 -   Incorporate this ray marcher to the existing path tracing engine
--   Include some settings of ray marching engine in the UI of appleseed.studio
+-   Include some settings of new ray marching engine to the UI of appleseed.studio
 #### 19 June -- 23 June, 26 June -- 30 June
 -   Add single scattering to the ray marcher
 -   Add support for adaptive steps
