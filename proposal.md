@@ -57,10 +57,9 @@ Optional deliverables:
 -   Develop simple ray marching engine with constant steps that can compute attenuation
 -   Incorporate this ray marcher to the existing path tracing engine
 -   Include some settings of ray marching engine in the UI of appleseed.studio
-#### 19 June -- 23 June
+#### 19 June -- 23 June, 26 June -- 30 June
 -   Add single scattering to the ray marcher
 -   Add support for adaptive steps
-#### 26 June -- 30 June
 -   Prepare a reference database with images of existing scenes, real or rendered with existing volume rendering engines
 -   Compare results of our raymarcher with this reference, thoroughly test functionality, fix bugs
 -   Prepare the project for Phase 1 submition, finalize the changes
@@ -79,18 +78,16 @@ Optional deliverables:
 -   Volume rendering, available for all existing rendering modes
 -   Support for both adaptive and constant stepping, for single and mutiple scattering
 ### Phase 3
-#### 31 July - 4 August
+#### 31 July - 4 August, 7 August - 11 August
 -   Include support for OSL volume shaders
 -   Write python bindings for volume rendering functions and entities
-#### 7 August - 11 August
 -   Profile volume rendering solution, make optimizations that increase performance
 -   Derive formulas for multiple importance sampling (OPTIONAL)
 -   Implement and test multiple importance sampling for volume rendering (OPTIONAL)
-#### 14 August - 18 August
+#### 14 August - 18 August, 21 August - 25 August
 -   Thoroughly test all implemented elements. Ensure that they do not break old functionality and are well integrated with appleseed infrastructure, such as appleseed.python
 -   Write documentation
-#### 21 August - 25 August
--   Final product evaluation
+-   Prepare the project for final evaluation
 #### By the end of phase 3 all goals must be reached
 ## Further development
 These goals are beyond the scope of GSoC'17, and can be implemented afterwards:
