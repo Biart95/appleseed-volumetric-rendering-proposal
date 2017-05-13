@@ -21,7 +21,7 @@ Therefore, there are at least `VolumeMaterial`, `GenericVolumeMaterial` and `OSL
 
 A volumetric counterpart to _BSDF_, it is actually a way simpler and can be defined by a single _PDF_ and a few coefficients. It can be evaluated and sampled as well, but sampling and evaluating does not directly require outgoing_direction (though it is useful to pass it to these functions), and does not require information about the surface. 
 
-_Phase Function_ can be chosen from different models, such as Isotropic and Heyney-Greenstein. The following parameters are defined for all of them:
+_Phase Function_ can be chosen from different models, such as Isotropic and Henyey-Greenstein. The following parameters are defined for all of them:
 
 - Scattering coefficient [`Spectrum`]
 - Absorbtion coefficient [`Spectrum`]
