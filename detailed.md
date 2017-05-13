@@ -26,11 +26,11 @@ _Phase Function_ can be chosen from different models, such as Isotropic and Heyn
 - Scattering coefficient [`Spectrum`]
 - Absorbtion coefficient [`Spectrum`]
 
-For different models additional parameters can bee provided.
+For different models additional parameters can be provided.
 
 Implement: `PhaseFunction` abstract class and all related classes such as `VolumeSegment` (Instead of `ShadingPoint`), `PhaseFunctionSample`.
 
-PhaseFunction functionality:
+`PhaseFunction` functionality:
 
 - `PhaseFunction::evaluate_pdf(...)` - almost same as `BSDF::evaluate_pdf(...)`
 - `PhaseFunction::sample(...)` - takes `VolumeSegment` and computes incoming direction (if not absorbed) and the probability of this pair of directions [`PhaseFunctionSample`]
