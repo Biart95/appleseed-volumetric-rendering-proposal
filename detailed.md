@@ -88,9 +88,23 @@ Then this approach can be extended to volume rendering:
 
 This idea sounds good for me... But some performance issues can arise, maybe?
 
+### What parts of code will be touched by the changes?
+
+At least we are going to change `RayTracer::trace()`, `ShadingContext` and some additional structs, like `Medium`. Most definitely, we will also extend `PathVertex`, at least by adding a new `ScatteringMode` value. Abstract `RayMarcher` will be added, as well as its successor `SingleScatteringRayMarcher`.
+
 ## 4. Modify lighting engines
 
 There are a lot of work to do with the lighting engines.
 
+### Upgrade existing lighting engines with the absorption from participating media.
 
+This change is mostly related to `Tracer::trace_between(...)` function that now should be capable of handling transmission of participating media (not only alpha).
 
+### Add a new lighting engine interface, suitable for volume rendering. Add a lighting engine for DRT and PT.
+
+The new lighting engine must take `VolumeSegment` as an input and sample the light and transmission along this segment.
+
+The simplest lighting engine, suitable for single scattering, can do stochastic sampling along the ray and then act as already implemented lighting engines, but with Phase Function instead of BSDF. Multiple Importance Sampling will most probably work "out of the box", so we can test our first scenes using this lighting engine.
+
+Another possible lighting engine is explained here: [Importance Sampling Techniques for Path Tracing in
+Participating Media](https://www.solidangle.com/research/egsr2012_volume.pdf)
