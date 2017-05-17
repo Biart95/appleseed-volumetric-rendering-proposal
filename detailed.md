@@ -119,19 +119,21 @@ Are there any differences between DRT and PT in this case?
 
 ### Differences from Single scattering
 
-Single scattering ray marcher in case of homogeneous media will do no more than just delegating light computations for the entire segment inside the volume to the lighting engine. Multiple scattering ray marcher will actually perform several raymarching steps, and for each step call the lighting engine (using the reduced number of light samples).
+Single scattering ray marcher in case of homogeneous media will do no more than just delegating light computations for the segment (from the point where ray is absorbed or leaves the volume to the entering point) to the lighting engine. Multiple scattering ray marcher will actually perform several raymarching steps, and for each step call the lighting engine (using the reduced number of light samples).
 
 For multiple scattering it is more logical to use simpler lighting engine among those two.
 
-### Where is exactly the line between volumetric lighting engine and `RayMarcher`?
+### Where is exactly the line between volumetric lighting engine and RayMarcher?
 
 `RayMarcher` does:
-- Trace the ray through the volume, determining the volume segment
+- Trace the ray through the volume, determining the volume segment.
 - Determine if the light that traverses the segment is absorbed or outscattered before it leaves the media and compute the length of the segment before it is absorbed or (in case of multiscattering) scattered.
-- Repeat the aforementioned step when the light is scattered as many times as neccessary (multiscattering)
+- For this, shorter, segment, delegate the light computations to the lighting engine
+- Repeat the aforementioned step as many times as neccessary, when the light is repeatedly scattered (multiscattering).
 
 Lighting engine:
 - Samples ligths along the segment
+- Integrates the lighting characteristics along the segment
 
 **Implement:** `MultipleScatteringRayMarcher`.
 
