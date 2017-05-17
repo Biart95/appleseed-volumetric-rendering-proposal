@@ -4,13 +4,13 @@
 
 ### Volume Material
 
-The _Volume Material_ entity is a volumetric counterpart to _Material_ that describes participating media instead of surfaces. Its interface is more or less the same as the interface of _Material_, and it is also exposed to appleseed.studio and can be assigned to object instances in the same way that _Material_ does. For now, the generic version of _VolumeMaterial_ can contain the following parameters:
+The _Volume Material_ entity is a volumetric counterpart to _Material_ that describes participating media instead of surfaces. Its interface is more or less the same as the interface of _Material_, and it is also exposed to appleseed.studio and can be assigned to object instances in the same way that _Material_ does. For now, a generic version of _VolumeMaterial_ can contain the following parameters:
 
 - Phase Function
 - Volume Shader
 - Volume Data (can be added later when implementing non-homogeneous media)
 
-There are also OSL version of _VolumeMaterial_: 
+There are also an OSL version of _VolumeMaterial_: 
 
 - Volume Shader
 - OSL Volume
@@ -21,19 +21,19 @@ Therefore, there are at least `VolumeMaterial`, `GenericVolumeMaterial` and `OSL
 
 A volumetric counterpart to _BSDF_, it is actually a way simpler and can be defined by a single _PDF_ and a few coefficients. It can be evaluated and sampled as well, but sampling and evaluating does not directly require outgoing_direction (though it is useful to pass it to these functions), and does not require information about the surface. 
 
-_Phase Function_ can be chosen from different models, such as Isotropic and Henyey-Greenstein. The following parameters are defined for all of them:
+_Phase Function_ can be chosen from different models, such as Isotropic and Henyey-Greenstein. The following parameters are defined for all of the models:
 
 - Scattering coefficient [`Spectrum`]
 - Absorption coefficient [`Spectrum`]
 
 For different models additional parameters can be provided.
 
-Implement: `PhaseFunction` abstract class and all related classes such as `VolumeSegment` (Instead of `ShadingPoint`), `PhaseFunctionSample`.
+**Implement:** `PhaseFunction` abstract class and all related classes such as `VolumeSegment` (Instead of `ShadingPoint`) and `PhaseFunctionSample`.
 
 `PhaseFunction` functionality:
 
 - `PhaseFunction::evaluate_pdf(...)` - almost same as `BSDF::evaluate_pdf(...)`
-- `PhaseFunction::sample(...)` - takes `VolumeSegment` and computes incoming direction (if not absorbed) and the probability of this pair of directions [`PhaseFunctionSample`]
+- `PhaseFunction::sample(...)` - takes `VolumeSegment` and computes incoming direction (if not absorbed) and probability of this pair of directions [`PhaseFunctionSample`]
 - `PhaseFunction::transmission(...)` - takes `VolumeSegment` and computes the ratio of light that is not absorbed or out-scattered while traversing the segment 
 - `PhaseFunction::evaluate(...)` - evaluates the amount of light [`Spectrum`] in-scattered from the given direction
 
@@ -73,9 +73,9 @@ In the first case, there can be two menus: _Assign Materials_ and _Assign Volume
 
 In the second case, when picking Front material, there could be two tabs: _Material_ and _Volume Material_. If _Volume Material_ is chosen, then Back material must be always _None_.
 
-### How to stack volume materials together if the ray is inside many of them at once? Should we stack volume material and the absorption from BSDF?
+### What if the ray is inside many overlapping participating media at once? Should we stack volume materials together (as well as and the absorption from BSDF)?
 
-At first, it must be mentioned, that Media structure should be extended with VolumeMaterial.
+At first, it must be mentioned, that `Medium` structure should be extended with _VolumeMaterial_.
 
 Now only the topmost media is being considered while computing absorption. Since we sometimes want to stack several absorption BSDF's and several Volumes, sometimes altogether, I propose to change the current algorithm to the following:
 
@@ -84,7 +84,7 @@ Now only the topmost media is being considered while computing absorption. Since
 Then this approach can be extended to volume rendering:
 
 > If there are at least one medium of the topmost priority that contains volume material, call raymarching procedure.
-> While raymarching, calculate the contributions from all volume materials and all BSDF's from the media of the topmost priority.
+> While raymarching, calculate the contributions from all volume materials and all BSDF's from the media that has the topmost priority.
 
 This idea sounds good for me... But some performance issues can arise, maybe?
 
@@ -100,11 +100,51 @@ There are a lot of work to do with the lighting engines.
 
 This change is mostly related to `Tracer::trace_between(...)` function that now should be capable of handling transmission of participating media (not only alpha).
 
-### Add a new lighting engine interface, suitable for volume rendering. Add a lighting engine for DRT and PT.
+### Add a new lighting engine interface, suitable for volume rendering. Add volumetric lighting engine for DRT and PT.
 
 The new lighting engine must take `VolumeSegment` as an input and sample the light and transmission along this segment.
 
 The simplest lighting engine, suitable for single scattering, can do stochastic sampling along the ray and then act as already implemented lighting engines, but with Phase Function instead of BSDF. Multiple Importance Sampling will most probably work "out of the box", so we can test our first scenes using this lighting engine.
 
 Another possible lighting engine is explained here: [Importance Sampling Techniques for Path Tracing in
-Participating Media](https://www.solidangle.com/research/egsr2012_volume.pdf)
+Participating Media](https://www.solidangle.com/research/egsr2012_volume.pdf), and have to be implemented as well.
+
+Probably, for this lighting engine, we need to extend lights and EDF's with new functionality: `Light::sample_along_segment(...)`. For isotropic point lights and diffuse edf, the exact solution is explained in the article. For other lights, approximate solutions are acceptable.
+
+Are there any differences between DRT and PT in this case?
+
+**Implement:** New interface for volumetric lighting engine that deals with segments and Phase functions. Implement this interface in two classes that must contain aforementioned functionality. Change `Tracer::trace_between(...)` or create a new version of this method. Add `Light::sample_along_segment` and `EDF::sample_along_segment` for all existing lights and EDFs.
+
+## 5. Multiple scattering
+
+### Differences from Single scattering
+
+Single scattering ray marcher in case of homogeneous media will do no more than just delegating light computations for the entire segment inside the volume to the lighting engine. Multiple scattering ray marcher will actually perform several raymarching steps, and for each step call the lighting engine (using the reduced number of light samples).
+
+For multiple scattering it is more logical to use simpler lighting engine among those two.
+
+### Where is exactly the line between volumetric lighting engine and `RayMarcher`?
+
+`RayMarcher` does:
+- Trace the ray through the volume, determining the volume segment
+- Determine if the light that traverses the segment is absorbed or outscattered before it leaves the media and compute the length of the segment before it is absorbed or (in case of multiscattering) scattered.
+- Repeat the aforementioned step when the light is scattered as many times as neccessary (multiscattering)
+
+Lighting engine:
+- Samples ligths along the segment
+
+**Implement:** `MultipleScatteringRayMarcher`.
+
+## 6. Photon mapping
+
+### What kind of new lighting engines we need?
+
+First of all, we need an engine that just saves the photon if it is absorbed (for the kdtree building stage). Secondly, we need an engine that acts as the DRT and PT engines, but also gathers light from the photons at random points on the ray.
+
+I would also be glad to try storing the volumetric photons as spheres in bvh, and then implement a special lighting engine that gathers photons along the ray.
+
+**Implement:** Engine for tracing photons and two engines capable of gathering the light from kdtree/bvh.
+
+## 7. Scenes for testing
+
+## 8. OSL support
