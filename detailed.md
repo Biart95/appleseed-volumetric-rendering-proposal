@@ -2,20 +2,13 @@
 
 ## 1. Add Entities that are necessary for describing volumes
 
-### Volume Material
+### Material
 
-The _Volume Material_ entity is a volumetric counterpart to _Material_ that describes participating media instead of surfaces. Its interface is more or less the same as the interface of _Material_, and it is also exposed to appleseed.studio and can be assigned to object instances in the same way that _Material_ does. For now, a generic version of _VolumeMaterial_ can contain the following parameters:
+We need to extend _Material_ entity by some properties that describe participating media:
 
 - Phase Function
-- Volume Shader
+- Volume Shader (?)
 - Volume Data (can be added later when implementing non-homogeneous media)
-
-There are also an OSL version of _VolumeMaterial_: 
-
-- Volume Shader
-- OSL Volume
-
-Therefore, there are at least `VolumeMaterial`, `GenericVolumeMaterial` and `OSLVolumeMaterial` classes implemented with all related factories.
 
 ### Phase Function
 
@@ -36,6 +29,8 @@ For different models additional parameters can be provided.
 - `PhaseFunction::sample(...)` - takes `VolumeSegment` and computes incoming direction (if not absorbed) and probability of this pair of directions [`PhaseFunctionSample`]
 - `PhaseFunction::transmission(...)` - takes `VolumeSegment` and computes the ratio of light that is not absorbed or out-scattered while traversing the segment 
 - `PhaseFunction::evaluate(...)` - evaluates the amount of light [`Spectrum`] in-scattered from the given direction
+
+**Question** Should phase function has methods that integrate transmission along the ray? Probably, yes.
 
 ## 2. Implement Heyney-Greenstein and Isotropic phase functions.
 
